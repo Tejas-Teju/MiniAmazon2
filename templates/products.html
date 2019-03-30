@@ -1,0 +1,42 @@
+{% extends 'layout.html'%}
+
+
+{% block body%}
+	
+	{% for product in products %}
+	<ul>
+		{% if session['c_type'] == 'buyer' %}
+		<li>
+			<b>{{product['sellerName']}}</b>
+		</li>
+		{% endif %}
+		<li>{{product['productName']}}</li>
+		<li>{{product['price']}}</li>
+		<li>{{product['description']}}</li>
+		<br>
+		<form action="/cart" method="POST">
+			<input type="hidden" name="id" value={{product['_id']}}>
+			<input type="submit" value="add to cart">
+		</form>
+		<br><br>		
+	</ul>
+	
+	{% endfor %}
+
+<a href="/logout">Log Out</a>
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

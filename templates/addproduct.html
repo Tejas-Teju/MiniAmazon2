@@ -1,0 +1,21 @@
+{% extends 'layout.html'%}
+
+
+{% block body%}
+
+<h1>Welcome to Mini Amazon  {{ session['username'] }}</h1>
+
+<p>Hello {{session['username']}}</p>
+<p>You have logged In as {{session['c_type']}}</p>
+<p><a href="/logout">logout</a></p>
+
+<h2>Add the details of the product below</h2>
+<form action="/addproducts" method="POST">
+	Product Name:<input type="text" name="productName"><br>
+	Price: $<input type="number" name="price"><br>
+	Description: <textarea type="text" cols="40" rows="10" name="description"></textarea><br>
+	<input type="submit" name="submit">
+	<br><a href="/products">Product Details</a>
+</form>
+
+{% endblock body %}

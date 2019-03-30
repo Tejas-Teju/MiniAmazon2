@@ -1,0 +1,43 @@
+{% extends 'layout.html'%}
+
+
+{% block body%}
+
+<h1>Welcome to Mini Amazon  {{ session['username'] }}</h1>
+{% if session %}
+
+<p>You have logged In as {{session['c_type']}}</p>
+<p><a href="/logout">logout</a></p>
+<a href="/products">Product Details</a>
+{% else %}
+
+<h2>Sign In</h2>
+
+<form action="/login" method="POST">
+	Username:<br>
+	<input type="text" name="username" placeholder="enter username"><br>
+	Password:<br>
+	<input type="password" name="password" placeholder="enter password"><br>
+	<input type="submit" name="submit">	
+</form>
+
+<h2>No account? Sign Up below</h2>
+<form action="/signup" method="POST">
+	Username:<br>
+	<input type="text" name="username" placeholder="enter username"><br>
+	Email:<br>
+	<input type="email" name="email" placeholder="enter email"><br>
+	Password:<br>
+	<input type="password" name="password" placeholder="enter password"><br>
+	Re-enter Password:<br>
+	<input type="password" name="rpassword" placeholder="Re-enter password"><br>
+	Customer Type: 
+	Seller <input type="radio" name="c_type" value="seller">
+	buyer <input type="radio" name="c_type" value="buyer" checked> <br>
+	<input type="submit" name="submit">	
+</form>
+
+
+
+{% endif %}
+{% endblock body%}
