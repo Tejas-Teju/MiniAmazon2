@@ -1,0 +1,36 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% for product_info,quantity in cart %}
+
+<ul>
+		<b> product Name </b> : {{ product_info['productName'] }} <br>
+		<b> product Description </b> : {{ product_info['description'] }} <br>
+		<b> product Price </b> : {{ product_info['price'] }} <br>
+		<b> product seller </b> : {{ product_info['sellerName'] }} <br>
+		<b> quantity </b> : {{ quantity }} <br>
+
+		<form  action='/removefromcart' method="POST">
+			
+			<input type="hidden" name="id" value="{{ product_info['_id'] }}">
+			<input type="submit" value="remove one unit from cart">
+		</form>
+</ul>
+{% endfor %}
+
+<h2>
+	{% if total_price %}
+		Total Cost: $ {{total_price}}
+	{% endif %}
+</h2>
+
+<form action='/order' method="POST">	
+	<input type="submit" value="Order Now" >
+</form>
+<br>
+<a href="/logout">Log Out</a><br><br>
+<a href="/products">Go to products</a>
+
+{% endblock body %}
